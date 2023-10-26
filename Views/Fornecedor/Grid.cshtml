@@ -1,0 +1,72 @@
+﻿@using TestFullStack.Models;
+   
+@model  List<FornecedorDto>
+@{ 
+    var grid = new WebGrid(Model, canSort: true, rowsPerPage: 10, ajaxUpdateCallback: "CallBack", ajaxUpdateContainerId: "UpdateContainerGrid");
+ }
+
+<div id-="UpdateContainerGrid" >
+    @grid.GetHtml(
+    
+    tableStyle: "grid table table-striped",
+
+    headerStyle: "thead-light",
+
+    alternatingRowStyle: "thead-dark",
+
+    columns: grid.Columns( grid.Column("","",format: @<input type="checkbox" class="selected_primary_grid" value="@item.fornecedor_id"  />),
+
+    grid.Column("nome", "NOME",style: "col"),
+
+    grid.Column("email","EMAIL", style: "col"),
+    grid.Column("cep","CEP", style: "col"),
+    grid.Column("cnpj","CNPJ", style: "col"),
+    grid.Column("cpf", "CPF" , style: "col")
+
+    )
+
+    )
+
+</div>
+
+<script>
+
+    fornecedor.ChangeGrid();
+
+    function CallBack(data) {
+        fornecedor.ChangeGrid();
+
+    }
+
+    function GetData() {
+    @foreach (FornecedorDto item in Model.ToList())
+    {
+    <text>
+
+        if (fornecedor.IdSelected == '@item.fornecedor_id') {
+            $("#fornecedor_id").val('@item.fornecedor_id');
+            if ('@item.cpf' != "") {
+                $("#cnpjorcpf").val('@item.cpf');
+            }
+            if ('@item.cnpj' != "") {
+                $("#cnpjorcpf").val('@item.cnpj');
+            }
+        $("#nome").val('@item.nome');
+        $("#cep").val('@item.cep');
+            $("#email").val('@item.email');
+        @if (item.data_nascimento != null)
+        {   <text>
+            var dt = new Date('@item.data_nascimento.Value.ToString("yyyy-MM-dd HH:mm:ss")');
+            $("#data_nascimento").val(dt);
+           </text>
+
+        }
+
+    }
+    </text>
+    }
+    }
+
+
+
+</script>

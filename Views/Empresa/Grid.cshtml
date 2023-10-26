@@ -1,0 +1,73 @@
+﻿@using TestFullStack.Models;
+
+@model  List<EmpresaDto>
+@{
+    var grid = new WebGrid(Model, canSort: true, rowsPerPage: 10, ajaxUpdateCallback: "CallBack", ajaxUpdateContainerId: "UpdateContainerGrid");
+}
+
+<div id="UpdateContainerGrid">
+
+    @{
+        WebGridColumn colCheck = new WebGridColumn();
+        colCheck.ColumnName = "";
+        colCheck.Format = @<text></text>;
+        if (ViewBag.Fornecedor != true)
+        {
+            colCheck =  grid.Column("", "", format: @<input type="checkbox" class="selected_primary_grid" value="@item.empresa_id" />);
+        }
+    }
+
+    @grid.GetHtml(
+
+    tableStyle: "grid table table-striped",
+
+    headerStyle: "thead-light",
+
+    alternatingRowStyle: "thead-dark",
+
+
+
+    columns:
+
+    grid.Columns(colCheck,
+
+grid.Column("nome_fantasia", "NOME FANTASIA"),
+grid.Column("cep", "CEP"),
+grid.Column("cnpj", "CNPJ")
+
+)
+
+)
+
+</div>
+
+<script>
+
+    empresa.ChangeGrid();
+
+
+    function CallBack(data) {
+        empresa.ChangeGrid();
+
+    }
+
+    function GetDataEmpresa() {
+        @foreach (EmpresaDto item in Model.ToList())
+        {
+        <text>
+
+            if (empresa.IdSelected == '@item.empresa_id') {
+                $("#empresa_id").val('@item.empresa_id');
+                if ('@item.cnpj' != "") {
+                    $("#cnpj").val('@item.cnpj');
+                }
+              
+                $("#nome_fantasia").val('@item.nome_fantasia');
+                $("#cep").val('@item.cep');
+            
+        }
+        </text>
+}
+    }
+
+</script>

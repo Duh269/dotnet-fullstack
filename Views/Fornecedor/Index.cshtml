@@ -1,0 +1,123 @@
+﻿
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Fornecedores</h2>
+
+
+@Scripts.Render("~/bundles/jquery")
+@Scripts.Render("~/bundles/jquerymask")
+@Scripts.Render("~/bundles/bootstrap")
+@Scripts.Render("~/bundles/jqueryval")
+@Scripts.Render("~/bundles/global")
+
+<script>
+    var fornecedor = new Fornecedor();
+</script>
+
+<div id="confmexclusao" class="modal" tabindex="-1" role="dialog" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Exclusão</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <p>Deseja realmente excluir esse registro ?</p>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-primary" onclick="fornecedor.Excluir()">Sim</button>
+                <button type="button" class="btn btn-secondary" onclick="Fornecedor.HideModalConfirm()">Não</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div id="confEmpresas" class="modal" tabindex="-1" role="dialog" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Empresas</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <div id="gridempresas">
+
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-primary" onclick="fornecedor.SalvarEmpresas()">Salvar</button>
+                <button type="button" class="btn btn-secondary" onclick="fornecedor.HideModalEmpresas()">Sair</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div id="actions">
+    <div class="row">
+        <div class="col-8 col-md-8 col-sm-8">
+            <button onclick="fornecedor.IncluirShow()" type="button" class="btn btn-light">Incluir</button>
+            <button onclick="fornecedor.EditarShow()" type="button" class="btn btn-light">Editar</button>
+            <button onclick="fornecedor.ShowModalConfirm()" type="button" class="btn btn-light">Excluir</button>
+        </div>
+        <div class="col-4 col-md-4 col-sm-4">
+            <input placeholder="Busca por CPF/CNPJ" class="form-control" type="text" onkeyup="fornecedor.KeyPressBusca(this.value)" />
+        </div>
+
+    </div>
+
+</div>
+
+<div class="col-12 col-md-12 col-sm-12">
+    <div id="InformMsg" class="alert" role="alert">
+
+    </div>
+</div>
+<div id="dataedit" style="display:none" class="row">
+    <div class="col-10 col-sm-10 col-md-10">
+
+    </div>
+    <div class="col-2 col-sm-2 col-md-2">
+        <button onclick="fornecedor.IncluirHide()" type="button" class="btn btn-close"></button>
+    </div>
+
+
+    @Html.Partial("Form")
+   
+
+    <div class="row">
+        <div class="col-8 col-md-8 col-sm-8"></div>
+        <div class="col-4 col-md-4 col-sm-4">
+            <button type="button" onclick="fornecedor.Salvar('formedit')" class="btn btn-primary"> Salvar </button>
+        </div>
+    </div>
+
+
+</div>
+<div id="datalist">
+
+</div>
+<div id="clients_dependecy" style="display:none">
+    <button type="button" class="btn btn-danger" onclick="fornecedor.ShowModalEmpresas()"> Incluir Empresa </button>
+
+    <div id="datalist_dependency">
+
+    </div>
+</div>
+
+
+
+<script>
+
+    Fornecedor.Consultar('');
+    fornecedor.CEP();
+    
+
+</script>
+
+

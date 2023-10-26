@@ -1,0 +1,105 @@
+﻿
+@{
+    ViewBag.Title = "Index";
+}
+
+@Scripts.Render("~/bundles/jquery")
+@Scripts.Render("~/bundles/jquerymask")
+@Scripts.Render("~/bundles/bootstrap")
+@Scripts.Render("~/bundles/global")
+<h2>Empresa</h2>
+<script>
+    var empresa = new Empresa();
+</script>
+
+<div id="confmexclusao" class="modal" tabindex="-1" role="dialog" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Exclusão</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <p>Deseja realmente excluir esse registro ?</p>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-primary" onclick="empresa.Excluir()">Sim</button>
+                <button type="button" class="btn btn-secondary" onclick="empresa.HideModalConfirm()">Não</button>
+            </div>
+        </div>
+    </div>
+
+</div>
+<div id="actions">
+    <button onclick="empresa.IncluirShow()" type="button" class="btn btn-light">Incluir</button>
+    <button onclick="empresa.EditarShow()" type="button" class="btn btn-light">Editar</button>
+    <button onclick="empresa.ShowModalConfirm()" type="button" class="btn btn-light">Excluir</button>
+</div>
+<div class="col-12 col-md-12 col-sm-12">
+    <div id="InformMsg" class="alert" role="alert">
+
+    </div>
+</div>
+
+<div id="dataedit" style="display:none" class="row">
+    <div class="col-10 col-sm-10 col-md-10"></div>
+    <div class="col-2 col-sm-2 col-md-2">
+        <button onclick="empresa.IncluirHide()" type="button" class="btn btn-close"></button>
+    </div>
+    <div class="col-12 col-md-12 col-sm-12">
+        <div id="InformMsg" class="alert" role="alert">
+
+        </div>
+    </div>
+    <div class="col-sm-12 col-mg-12 col-12">
+        <form id="formedit">
+            <div class="row">
+                <input class="form-control" name="empresa_id" id="empresa_id" value="0" hidden />
+                <div class="col-sm-4 col-mg-4 col-4" >
+                    <label>CNPJ</label>
+                    <input type="text" class="form-control" name="cnpj" id="cnpj" />
+                </div>
+                <div class="col-sm-4 col-mg-4 col-4">
+                    <label>Nome</label>
+                    <input type="text" class="form-control" name="nome_fantasia" id="nome_fantasia" />
+                </div>
+
+                <div class="col-sm-4 col-mg-4 col-4">
+                    <label>CEP</label>
+                    <input type="text" class="form-control" name="cep" id="cep" />
+                </div>
+            </div>
+        </form>
+
+        <div class="row">
+            <div class="col-10 col-sm-10 col-md-10"></div>
+            <div class="col-2 col-sm-2 col-md-2">
+                <button type="button" onclick="empresa.Salvar('formedit')" class="btn btn-primary"> Salvar </button>
+            </div>
+        </div>
+
+
+    </div>
+
+</div>
+<div id="datalist">
+
+</div>
+<div id="fornecedores_dependecy" style="display:none">
+    <button type="button" class="btn btn-danger"> Incluir Fornecedor(es) </button>
+    
+    <div id="datalist_dependency">
+
+    </div>
+</div>
+
+
+<script>
+
+
+    Empresa.Consultar("", "datalist");
+    //$("#cnpj").mask("00.000.000/0000-00");
+    //$("#cep").mask("00.000-000");
+</script>

@@ -1,0 +1,38 @@
+﻿@model TestFullStack.Models.FornecedorDto
+
+
+<form id="formedit" method="post">
+    <div class="row">
+
+        <input class="form-control" hidden name="fornecedor_id" id="fornecedor_id" value="0" />
+        <div class="col-6 col-md-6 col-sm-6">
+            <label>CNPJ/CPF</label>
+            <input class="form-control" type="text" placeholder="" name="cnpj" id="cnpjorcpf" />
+            <label>Nome</label>
+            <input class="form-control" type="text" name="nome" id="nome" />
+            
+            <label>Email</label>
+            <input class="form-control" type="email" name="email" id="email" />
+            
+        </div>
+        <div class="col-6 col-md-6 col-sm-6">
+            <label>Data Nascimento</label>
+            <input class="form-control" type="date" name="data_nascimento" id="data_nascimento" />
+            
+            <label>CEP</label>
+            <input class="form-control" type="text" name="cep" id="cep" />
+          
+            <label id="msgValidaton" style="display:none"></label>
+
+        </div>
+
+
+    </div>
+
+</form>
+
+<script>
+
+   
+
+</script>
